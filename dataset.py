@@ -1,18 +1,15 @@
 import pandas as pd
 import numpy as np
 
-# Read the first two rows of the CSV file
-lines = pd.read_csv(r"C:\Malayalam_Char_Gabor.csv", nrows=2)
+classes= pd.read_csv('C:\\Users\\harshith.m\\PycharmProjects\\ml\\venv\\Malayalam_Char_Gabor.csv')
+column_data = classes.iloc[:, 1:]
 
-lines = lines.apply(pd.to_numeric, errors='coerce')
+def mean_and_sandarddeviation(classes,column_data):
+    mean1=np.mean(classes)
+    for column_name, class_data in column_data.items():
+        mean=np.mean(class_data)
+        print("mean of class ",column_name," in the csv file is = ", mean)
+        std=np.std(class_data)
+        print("standard deviation of the class ",column_name,"is = ", std)
 
-# Calculate mean of each row
-mean1 = np.mean(lines.iloc[0])
-mean2 = np.mean(lines.iloc[1])
-
-# Calculate standard deviation of both rows
-std = np.std(lines)
-
-print("Mean of the first row of the csv file is:", mean1)
-print("Mean of the second row of the csv file is:", mean2)
-print("Standard deviation of the rows of the csv file are:", std)
+mean_and_sandarddeviation(classes,column_data)
